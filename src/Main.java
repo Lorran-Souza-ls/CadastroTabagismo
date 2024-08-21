@@ -1,4 +1,3 @@
-// Código da classe Main
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -21,11 +20,15 @@ public class Main {
                     cadastro.listarPessoas();
                     break;
                     
+                case 3:
+                    exportarDados(scanner, cadastro);
+                    break;
+                    
                 case 4:
                     importarDados(scanner, cadastro);
                     break;
                     
-                case 3:
+                case 5:
                     continuar = false;
                     System.out.println("Saindo...");
                     break;
@@ -42,8 +45,9 @@ public class Main {
     private static void mostrarMenu() {
         System.out.println("1. Cadastrar Pessoa");
         System.out.println("2. Listar Pessoas Cadastradas");
-        System.out.println("3. Sair");
+        System.out.println("3. Exportar Dados para CSV");
         System.out.println("4. Importar Dados do CSV");
+        System.out.println("5. Sair");
         System.out.print("Escolha uma opção: ");
     }
 
@@ -54,12 +58,12 @@ public class Main {
             try {
                 opcao = scanner.nextInt();
                 scanner.nextLine();
-                if (opcao < 1 || opcao > 4) {
+                if (opcao < 1 || opcao > 5) {
                     throw new InputMismatchException();
                 }
                 opcaoValida = true;
             } catch (InputMismatchException e) {
-                System.out.print("Entrada inválida. Digite um número entre 1 e 4: ");
+                System.out.print("Entrada inválida. Digite um número entre 1 e 5: ");
                 scanner.nextLine();
             }
         }
@@ -110,5 +114,11 @@ public class Main {
         System.out.print("Digite o caminho do arquivo CSV para importar: ");
         String caminhoArquivo = scanner.nextLine();
         cadastro.importarDeCSV(caminhoArquivo);
+    }
+    
+    private static void exportarDados(Scanner scanner, Cadastro cadastro) {
+        System.out.print("Digite o caminho do arquivo CSV para exportar: ");
+        String caminhoArquivo = scanner.nextLine();
+        cadastro.exportarParaCSV(caminhoArquivo);
     }
 }

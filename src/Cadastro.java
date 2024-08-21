@@ -1,5 +1,3 @@
-// Código da classe Cadastro
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -7,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Cadastro {
     private List<Pessoa> pessoas;
@@ -48,7 +45,7 @@ public class Cadastro {
     public void importarDeCSV(String caminhoArquivo) {
         try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
-            reader.readLine();  // Ignorar o cabeçalho
+            reader.readLine(); // Ignorar cabeçalho
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
                 if (dados.length == 4) {
